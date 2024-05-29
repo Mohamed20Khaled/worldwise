@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   MapContainer,
@@ -6,14 +5,15 @@ import {
   Marker,
   Popup,
   useMap,
-  useMapEvent,
+  useMapEvents,
 } from "react-leaflet";
 
 import styles from "./Map.module.css";
+import { useEffect, useState } from "react";
 import { useCities } from "../context/CitiesContext";
-import { useGeolocation } from "../hooks/useGeoLocation";
-import Button from "./Button";
+import { useGeolocation } from "../hooks/useGeolocation";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import Button from "./Button";
 
 function Map() {
   const { cities } = useCities();
@@ -23,7 +23,6 @@ function Map() {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
-
   const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(
@@ -45,9 +44,10 @@ function Map() {
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "loading..." : "Use your position"}
+          {isLoadingPosition ? "Loading..." : "Use your position"}
         </Button>
       )}
+
       <MapContainer
         center={mapPosition}
         zoom={6}
@@ -63,9 +63,12 @@ function Map() {
             position={[city.position.lat, city.position.lng]}
             key={city.id}
           >
-            <Popup>{city.cityName}</Popup>
+            <Popup>
+              <span>{city.emoji}</span> <span>{city.cityName}</span>
+            </Popup>
           </Marker>
         ))}
+
         <ChangeCenter position={mapPosition} />
         <DetectClick />
       </MapContainer>
@@ -82,7 +85,7 @@ function ChangeCenter({ position }) {
 function DetectClick() {
   const navigate = useNavigate();
 
-  useMapEvent({
+  useMapEvents({
     click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
 }
