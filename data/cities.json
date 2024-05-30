@@ -95,6 +95,42 @@
         "lng": "9.212576852864675"
       },
       "id": 98443202
+    },
+    {
+      "cityName": "Baie des Anges",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2024-05-30T09:44:14.699Z",
+      "notes": "",
+      "position": {
+        "lat": "43.6482316518667",
+        "lng": "7.231062246300205"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Kursk",
+      "country": "Russian Federation (the)",
+      "emoji": "🇷🇺",
+      "date": "2024-05-30T10:08:37.569Z",
+      "notes": "",
+      "position": {
+        "lat": "51.65994886611381",
+        "lng": "36.23660382674675"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Parczew",
+      "country": "Poland",
+      "emoji": "🇵🇱",
+      "date": "2024-05-30T10:09:01.880Z",
+      "notes": "",
+      "position": {
+        "lat": "51.60619522807487",
+        "lng": "22.835490382359396"
+      },
+      "id": 98443205
     }
   ]
 }
